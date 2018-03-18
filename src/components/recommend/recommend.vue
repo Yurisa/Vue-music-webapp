@@ -1,16 +1,16 @@
 <template>
   <div class="recommend" ref="recommend">
-  <scroll ref="scroll" class="recommend-content" :data="discList">
-   <div>
-    <div v-if="recommends.length" class="slider-wrapper" ref="sliderWrapper">
-      <slider>
-        <div v-for="(item,index) in recommends" :key="index">
-          <a :href="item.linkUrl">
-            <img class="needsclick" @load="loadImage" :src="item.picUrl">
-          </a>
+    <scroll ref="scroll" class="recommend-content" :data="discList">
+      <div>
+        <div v-if="recommends.length" class="slider-wrapper" ref="sliderWrapper">
+          <slider>
+            <div v-for="(item,index) in recommends" :key="index">
+              <a :href="item.linkUrl">
+                <img class="needsclick" @load="loadImage" :src="item.picUrl">
+              </a>
+            </div>
+          </slider>
         </div>
-      </slider>
-    </div>
         <div class="recommend-list">
           <h1 class="list-title">热门歌单推荐</h1>
           <ul>
@@ -25,11 +25,12 @@
             </li>
           </ul>
         </div>
-  </div>
-   <div class="loading-container" v-show="!discList.length">
+      </div>
+      <div class="loading-container" v-show="!discList.length">
         <loading></loading>
-   </div>
-  </scroll>
+      </div>
+    </scroll>
+    <router-view></router-view>
   </div>
 </template>
 
@@ -38,9 +39,11 @@ import Slider from '../../base/slider/slider'
 import Scroll from '../../base/scroll/scroll'
 import Loading from '../../base/loading/loading'
 import {getRecommend, getDiscList} from '../../api/recommend'
+import {playlistMixin} from 'common/js/mixin'
 import { ERR_OK } from '../../api/config';
 import {mapMutations} from 'vuex'
     export default  {
+      mixins: [playlistMixin],
       data() {
         return {
            recommends: [],

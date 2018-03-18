@@ -61,7 +61,7 @@
     methods: {
       _setSliderWidth(isResize) {
         this.children = this.$refs.sliderGroup.children
-
+        console.log(this.children)
         let width = 0
         let sliderWidth = this.$refs.slider.clientWidth
         for (let i = 0; i < this.children.length; i++) {
@@ -73,6 +73,7 @@
         }
         if (this.loop && !isResize) {
           width += 2 * sliderWidth
+          console.log('width', width)
         }
         this.$refs.sliderGroup.style.width = width + 'px'
       },
@@ -153,7 +154,7 @@
         border-radius: 50%
         background: $color-text-l
         &.active
-          width: 20px
-          border-radius: 5px
+          width: 8px
+          border-radius: 50%
           background: $color-text-ll
 </style>
